@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group 'single'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.jetbrains:annotations:20.1.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.6.1'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
+    //implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.6.1'
+    // https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client
+    //implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.4'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.6.1'
+    // https://mvnrepository.com/artifact/org.assertj/assertj-core
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.21.0'
+
+}
+
+test {
+    useJUnitPlatform()
+}
