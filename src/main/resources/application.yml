@@ -2,12 +2,12 @@ spring:
   datasource:
     url: jdbc:mariadb://localhost:3306/dalee
     driverClassName: org.mariadb.jdbc.Driver
-    username:
-    password:
+    username: #
+    password: #
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
       show-sql: true
 server:
   port: 8080

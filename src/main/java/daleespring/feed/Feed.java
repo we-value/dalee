@@ -8,9 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 public class Feed {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Comment("키값")
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Comment("키값")
     private Long feedId;
 
     @Comment("제목")
