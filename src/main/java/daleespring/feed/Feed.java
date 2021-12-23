@@ -1,14 +1,25 @@
 package daleespring.feed;
 
-import java.sql.Clob;
+import org.hibernate.annotations.Comment;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
 public class Feed {
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Comment("키값")
     private Long feedId;
+
+    @Comment("제목")
     private String title;
+    @Comment("내용")
     private String content;
+    @Comment("예약알림일")
     private LocalDateTime reservationTime;
-    private Color moodColor;
+    @Comment("기분색상")
+    private MoodColor moodColor;
+    @Comment("작성일")
     private LocalDateTime wTime;
 
     public Long getFeedId() {
@@ -43,11 +54,11 @@ public class Feed {
         this.reservationTime = reservationTime;
     }
 
-    public Color getMoodColor() {
+    public MoodColor getMoodColor() {
         return moodColor;
     }
 
-    public void setMoodColor(Color moodColor) {
+    public void setMoodColor(MoodColor moodColor) {
         this.moodColor = moodColor;
     }
 

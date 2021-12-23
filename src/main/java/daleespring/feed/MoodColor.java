@@ -1,6 +1,6 @@
 package daleespring.feed;
 
-public enum Color {
+public enum MoodColor {
     red,
     yellow,
     green,

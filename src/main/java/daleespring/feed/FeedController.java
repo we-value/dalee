@@ -31,4 +31,6 @@ public class FeedController {
         model.addAttribute("name", "dalee");
         return "feed/feed_detail";
     }
+    //modify 수정
+    //remove 삭제
 }

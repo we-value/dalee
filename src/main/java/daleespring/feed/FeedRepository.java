@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface FeedRepository {
-    Feed save(Feed feed);
-    Optional<Feed> findById(Long feedId);
-    List<Feed> findByAll();
+    Feed saveFeed(Feed feed);
+    Optional<Feed> findByIdFeed(Long feedId);
+    List<Feed> findByAllFeed();
 }
