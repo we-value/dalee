@@ -4,11 +4,11 @@ import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
-public class JpaFeedRepository implements FeedRepository{
+public class FeedRepositoryJpa implements FeedRepository{
 
     private final EntityManager entityManager;
 
-    public JpaFeedRepository(EntityManager entityManager){
+    public FeedRepositoryJpa(EntityManager entityManager){
         this.entityManager = entityManager;
     }
 
