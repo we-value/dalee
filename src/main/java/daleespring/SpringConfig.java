@@ -2,7 +2,7 @@ package daleespring;
 
 import daleespring.feed.FeedRepository;
 import daleespring.feed.FeedService;
-import daleespring.feed.JpaFeedRepository;
+import daleespring.feed.FeedRepositoryJpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,6 +26,6 @@ public class SpringConfig {
 
     @Bean
     public FeedRepository feedRepository(){
-        return new JpaFeedRepository(entityManager);
+        return new FeedRepositoryJpa(entityManager);
     }
 }
