@@ -1,14 +1,18 @@
 package daleespring.feed;
 
+import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Transactional
+@Service
 public class FeedService {
-    private FeedRepository feedRepository;
 
-    public FeedService(FeedRepository feedRepository){
+    private final FeedRepository feedRepository;
+
+    public FeedService(FeedRepository feedRepository) {
         this.feedRepository = feedRepository;
     }
 

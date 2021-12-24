@@ -16,10 +16,8 @@ public class Feed {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Comment("키값")
     private Long feedId;
-
     @Comment("제목")
     private String title;
-
     @Lob
     @Comment("내용")
     private String content;
@@ -29,5 +27,4 @@ public class Feed {
     private MoodColor moodColor;
     @Comment("작성일")
     private LocalDateTime wTime;
-
 }

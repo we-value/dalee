@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+
 @SpringBootTest
 @Transactional
 class FeedServiceTest {
@@ -20,7 +21,7 @@ class FeedServiceTest {
     FeedRepository feedRepository;
 
     @Test
-    void Feed_저장() {
+    public void Feed_저장() {
         //given
         Feed feed = new Feed();
         feed.setTitle("테스트 제목");
@@ -38,7 +39,7 @@ class FeedServiceTest {
     }
 
     @Test
-    void 피드_검색() {
+    public void 피드_검색() {
         Feed feed = new Feed();
         feed.setTitle("테스트 제목");
         feedService.saveFeed(feed);
@@ -49,7 +50,7 @@ class FeedServiceTest {
     }
 
     @Test
-    void 피드_전체_검색() {
+    public void 피드_전체_검색() {
         Feed feed1 = new Feed();
         feed1.setTitle("테스트 제목1");
         feedService.saveFeed(feed1);
