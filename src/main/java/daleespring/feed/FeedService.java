@@ -1,21 +1,20 @@
 package daleespring.feed;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Transactional
 @Service
+@Transactional(readOnly = true)
+@RequiredArgsConstructor
 public class FeedService {
 
     private final FeedRepository feedRepository;
 
-    public FeedService(FeedRepository feedRepository) {
-        this.feedRepository = feedRepository;
-    }
-
+    @Transactional
     public Long saveFeed(Feed feed){
         feedRepository.saveFeed(feed);
         return feed.getFeedId();
