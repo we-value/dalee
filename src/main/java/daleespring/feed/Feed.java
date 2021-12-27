@@ -8,8 +8,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter
-@Setter
+@Table(name = "feed")
+@Getter @Setter
 public class Feed {
 
     @Id
@@ -24,7 +24,7 @@ public class Feed {
     @Comment("예약알림일")
     private LocalDateTime reservationTime;
     @Comment("기분색상")
-    private MoodColor moodColor;
+    private FeedMoodColor moodColor;
     @Comment("작성일")
     private LocalDateTime wTime;
 }

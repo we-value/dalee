@@ -21,12 +21,12 @@ class FeedServiceTest {
     FeedRepository feedRepository;
 
     @Test
-    public void Feed_저장() {
+    public void Feed_저장(){
         //given
         Feed feed = new Feed();
         feed.setTitle("테스트 제목");
         feed.setContent("테스트 내용");
-        feed.setMoodColor(MoodColor.red);
+        feed.setMoodColor(FeedMoodColor.red);
         feed.setReservationTime(LocalDateTime.now());
         feed.setWTime(LocalDateTime.now());
 
