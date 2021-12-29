@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/layout">
+
+<!-- Page Content-->
+<div layout:fragment="content">
+    <form th:action="@{/feed/add}" role="form" th:object="${feedAddForm}" method="post">
+        <section class="pt-4">
+            <div class="container px-lg-5">
+                <!-- Page Features-->
+                <div class="row gx-lg-5">
+                    <div class="col-lg-6 col-xxl-12 mb-3">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-3">
+                                <h2 class="fs-4 fw-bold">제목</h2>
+                                <input class="fs-4 fw-bold" type="text" th:field="*{title}" th:text="*{title}" placeholder="글 제목을 입력하세요">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xxl-12 mb-3">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-3">
+                                <h2 class="fs-4 fw-bold">내용</h2>
+                                <textarea class="fs-4" rows="10" type="text" th:field="*{content}" th:text="*{content}" placeholder="글 내용을 입력하세요"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-xxl-6 mb-3">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-3">
+                                <h2 class="fs-4 fw-bold">예약알림</h2>
+                                <input type="datetime-local" class="fs-4" th:field="*{reservationDate}" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xxl-6 mb-3">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-1 pt-0 pt-lg-1">
+                                <h2 class="fs-4 fw-bold">상태</h2>
+
+                                <ul class="list-style-none">
+                                    <li class="col-2-1" th:each="fmd : ${feedMoodColor}">
+                                        <input type="radio" th:id="${fmd}" name="moodColor" th:value="${fmd}">
+                                        <label th:for="${fmd}"><img class="img-fluid" th:src="@{/images/} + ${fmd} + '.png'" th:alt="${fmd}"></label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-xxl-12 mb-3">
+                        <div class="card bg-light border-0 h-100">
+                            <button type="submit" class="btn btn-primary btn-lg">저장</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+</div>
+</html>
