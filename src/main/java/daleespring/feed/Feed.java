@@ -1,9 +1,11 @@
 package daleespring.feed;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Comment;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,27 +15,42 @@ import java.time.LocalDateTime;
 @Getter @Setter
 public class Feed {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Comment("키값")
     @Column(name = "feed_id")
+    
     private Long feedId;
+
     @Comment("제목")
     @Column(name = "title")
     private String title;
+
     @Lob
     @Comment("내용")
     @Column(name = "content")
     private String content;
+
     @Comment("예약알림일")
     @Column(name = "reservation_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-ddTHH:mm", timezone = "Asia/Seoul")
     private LocalDateTime reservationDate;
-    @Comment("기분색상")
+
+    @Comment("상태")
     @Column(name = "mood_color")
-    private FeedMoodColor moodColor;
+    @Enumerated(EnumType.STRING)
+    private MoodColor moodColor;
 
     @Comment("작성일")
     @Column(name = "w_date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @CreationTimestamp
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-ddTHH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime wDate;
+
+    @Comment("수정일")
+    @Column(name = "e_date")
+    @UpdateTimestamp
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-ddTHH:mm:ss", timezone = "Asia/Seoul")
+    private LocalDateTime eDate;
 }

@@ -26,9 +26,10 @@ class FeedServiceTest {
         Feed feed = new Feed();
         feed.setTitle("테스트 제목");
         feed.setContent("테스트 내용");
-        feed.setMoodColor(FeedMoodColor.red);
+        feed.setMoodColor(MoodColor.red);
         feed.setReservationDate(LocalDateTime.now());
         feed.setWDate(LocalDateTime.now());
+        feed.setEDate(LocalDateTime.now());
 
         //when
         Long feedId = feedService.saveFeed(feed);
