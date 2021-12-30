@@ -4,6 +4,18 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layouts/layout">
 
+<!-- 해당 html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+    <style>
+        .field-error {
+            border: 2px solid #4AC6C6;
+        }
+    </style>
+</th:block>
+
+<!-- 해당 html 고유 스크립트 추가 -->
+<th:block layout:fragment="script"></th:block>
+
 <!-- Page Content-->
 <div layout:fragment="content">
     <form th:action="@{/feed/add}" role="form" th:object="${feedAddForm}" method="post">
@@ -13,40 +25,42 @@
                 <div class="row gx-lg-5">
                     <div class="col-lg-6 col-xxl-12 mb-3">
                         <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-3">
+                            <div class="card-body text-center p-3 p-lg-4 pt-0 pt-lg-2">
                                 <h2 class="fs-4 fw-bold">제목</h2>
-                                <input class="fs-4 fw-bold" type="text" th:field="*{title}" th:text="*{title}" placeholder="글 제목을 입력하세요">
+                                <input class="fs-4 fw-bold" type="text" th:field="*{title}"
+                                       th:classappend="${#fields.hasErrors('title')}? 'field-error' : ''" placeholder="글 제목을 입력하세요">
+                                <p class="fs-6 fw-bold text-start" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Incorrect date</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-xxl-12 mb-3">
                         <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-3">
+                            <div class="card-body text-center p-3 p-lg-4 pt-0 pt-lg-2">
                                 <h2 class="fs-4 fw-bold">내용</h2>
-                                <textarea class="fs-4" rows="10" type="text" th:field="*{content}" th:text="*{content}" placeholder="글 내용을 입력하세요"></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-xxl-6 mb-3">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-3">
-                                <h2 class="fs-4 fw-bold">예약알림</h2>
-                                <input type="datetime-local" class="fs-4" th:field="*{reservationDate}" >
+                                <textarea class="fs-4" rows="10" type="text" th:field="*{content}"
+                                          th:classappend="${#fields.hasErrors('content')}? 'field-error' : ''" placeholder="글 내용을 입력하세요"></textarea>
+                                <p class="fs-6 fw-bold text-start" th:if="${#fields.hasErrors('content')}" th:errors="*{content}">Incorrect date</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-xxl-6 mb-3">
                         <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-1 pt-0 pt-lg-1">
+                            <div class="card-body text-center p-3 p-lg-4 pt-0 pt-lg-2">
                                 <h2 class="fs-4 fw-bold">상태</h2>
-
                                 <ul class="list-style-none">
-                                    <li class="col-2-1" th:each="fmd : ${feedMoodColor}">
-                                        <input type="radio" th:id="${fmd}" name="moodColor" th:value="${fmd}">
+                                    <li class="col-2-1" th:each="fmd : ${T(daleespring.feed.MoodColor).values()}">
+                                        <input type="radio" th:id="${fmd}" name="moodColor" th:value="${fmd}" th:checked="${fmd eq feedAddForm.moodColor}">
                                         <label th:for="${fmd}"><img class="img-fluid" th:src="@{/images/} + ${fmd} + '.png'" th:alt="${fmd}"></label>
                                     </li>
                                 </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xxl-6 mb-3">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-3 p-lg-4 pt-0 pt-lg-2">
+                                <h2 class="fs-4 fw-bold">예약알림</h2>
+                                <input type="datetime-local" class="fs-4" th:field="*{reservationDate}">
                             </div>
                         </div>
                     </div>
