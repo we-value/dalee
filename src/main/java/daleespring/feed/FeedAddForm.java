@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Lob;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Getter @Setter
@@ -18,7 +19,7 @@ public class FeedAddForm {
     @NotEmpty(message = "내용을 입력해주세요")
     private String content;
 
-    /*@NotEmpty(message = "상태를 입력해주세요")*/
+    @NotNull(message = "상태를 선택해주세요")
     private MoodColor moodColor;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")

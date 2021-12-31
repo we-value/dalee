@@ -35,9 +35,9 @@ public class FeedController {
     }
 
     @PostMapping(value = "add")
-    public String feedAdd(@Valid FeedAddForm feedForm, BindingResult feedFromBindingResult){
+    public String feedAdd(@Valid FeedAddForm feedForm, BindingResult feedFormBindingResult){
 
-        if (feedFromBindingResult.hasErrors()) {
+        if (feedFormBindingResult.hasErrors()) {
             return "feed/feed_add";
         }
 
