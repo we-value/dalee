@@ -2,12 +2,12 @@ spring:
   datasource:
     url: jdbc:mariadb://localhost:3306/dalee
     driverClassName: org.mariadb.jdbc.Driver
-    username:
-    password:
+    username: root
+    password: a1234567890!
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
 
 server:
