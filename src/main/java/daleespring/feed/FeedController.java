@@ -2,14 +2,14 @@ package daleespring.feed;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Slf4j
 @Controller
@@ -35,22 +35,48 @@ public class FeedController {
     }
 
     @PostMapping(value = "add")
-    public String feedAdd(@Valid FeedAddForm feedForm, BindingResult feedFormBindingResult){
+    public String feedAdd(@Valid FeedAddForm feedAddForm, BindingResult feedFormBindingResult){
 
         if (feedFormBindingResult.hasErrors()) {
             return "feed/feed_add";
         }
 
         Feed feed = new Feed();
-        feed.setTitle(feedForm.getTitle());
-        feed.setContent(feedForm.getContent());
-        feed.setReservationDate(feedForm.getReservationDate());
-        feed.setMoodColor(feedForm.getMoodColor());
+        feed.setTitle(feedAddForm.getTitle());
+        feed.setContent(feedAddForm.getContent());
+        feed.setReservationDate(feedAddForm.getReservationDate());
+        feed.setMoodColor(feedAddForm.getMoodColor());
 
         feedService.saveFeed(feed);
         return "redirect:/feed/list";
     }
 
-    //modify 수정
+    @GetMapping(value = "{feedId}/modify")
+    public String feedModify(@PathVariable("feedId") Long feedId, Model model){
+        Feed modifyFeed = feedService.findByIdFeed(feedId);
+        FeedModifyForm feedModifyForm = new FeedModifyForm();
+        feedModifyForm.setTitle(modifyFeed.getTitle());
+        feedModifyForm.setContent(modifyFeed.getContent());
+        feedModifyForm.setMoodColor(modifyFeed.getMoodColor());
+        feedModifyForm.setReservationDate(modifyFeed.getReservationDate());
+
+        model.addAttribute("feedModifyForm", feedModifyForm);
+        return "feed/feed_modify";
+    }
+
+    @PostMapping(value = "{feedId}/modify")
+    public String feedModify(@PathVariable("feedId") Long feedId,
+                             @ModelAttribute("feedModifyForm") @Valid FeedModifyForm feedModifyForm,
+                             BindingResult feedFormBindingResult){
+
+        if (feedFormBindingResult.hasErrors()) {
+            return "feed/feed_modify";
+        }
+
+        feedService.editFeed(feedId, feedModifyForm.getTitle(), feedModifyForm.getContent(), feedModifyForm.getReservationDate(), feedModifyForm.getMoodColor());
+
+        return "feed/feed_modify";
+    }
+
     //remove 삭제
 }

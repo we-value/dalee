@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -17,8 +16,8 @@ public class FeedRepository {
         entityManager.persist(feed);
     }
 
-    public Optional<Feed> findByIdFeed(Long feedId) {
-        return Optional.ofNullable(entityManager.find(Feed.class, feedId));
+    public Feed findByIdFeed(Long feedId) {
+        return entityManager.find(Feed.class, feedId);
     }
 
     public List<Feed> findByAllFeed() {

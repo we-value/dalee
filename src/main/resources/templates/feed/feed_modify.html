@@ -18,7 +18,7 @@
 
 <!-- Page Content-->
 <div layout:fragment="content">
-    <form th:action="@{/feed/add}" role="form" th:object="${feedAddForm}" method="post">
+    <form role="form" th:object="${feedModifyForm}" method="post">
         <section class="pt-4">
             <div class="container px-lg-5">
                 <!-- Page Features-->
@@ -48,7 +48,7 @@
                             <div class="card-body text-center p-3 p-lg-4 pt-0 pt-lg-2">
                                 <h2 class="fs-4 fw-bold">상태</h2>
                                 <div class="col-2-1 float-start" th:each="fmd : ${T(daleespring.feed.MoodColor).values()}">
-                                    <input type="radio" th:id="${fmd}" name="moodColor" th:value="${fmd}" th:checked="${fmd eq feedAddForm.moodColor}">
+                                    <input type="radio" th:id="${fmd}" name="moodColor" th:value="${fmd}" th:checked="${fmd eq feedModifyForm.moodColor}">
                                     <label th:for="${fmd}"><img class="img-fluid" th:src="@{/images/} + ${fmd} + '.png'" th:alt="${fmd}"></label>
                                 </div>
                                 <p class="fs-6 fw-bold text-start" th:if="${#fields.hasErrors('moodColor')}" th:errors="*{moodColor}">Incorrect date</p>
