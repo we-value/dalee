@@ -4,6 +4,18 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layouts/layout">
 
+<!-- 해당 html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+    <style>
+        .modify-a:link { color: #4AC6C6; text-decoration: none;}
+        .modify-a:visited { color: black; text-decoration: none;}
+        .modify-a:hover { color: red; text-decoration: none;}
+    </style>
+</th:block>
+
+<!-- 해당 html 고유 스크립트 추가 -->
+<th:block layout:fragment="script"></th:block>
+
 <div layout:fragment="content">
     <header class="py-5">
         <div class="container px-lg-5">
@@ -11,7 +23,7 @@
                 <div class="m-4 m-lg-5">
                     <h1 class="display-5 fw-bold">글 달리기</h1>
                     <p class="fs-4">무엇이 되든 일단 글쓰는 습관을 기르자</p>
-                    <a class="btn btn-primary btn-lg" href="/feed/add">시작</a>
+                    <a class="btn btn-primary btn-lg" th:href="@{/feed/add}">시작</a>
                 </div>
             </div>
         </div>
@@ -22,13 +34,17 @@
             <!-- Page Features-->
             <div class="row gx-lg-5">
                 <div class="col-lg-6 col-xxl-4 mb-5" th:each="feed : ${feedList}">
-                    <div class="card bg-light border-0 h-100">
-                        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                            <div class="feature bg-gradient text-white rounded-3 mb-4 mt-n4"><img class="img-fluid" th:src="@{/images/} + ${feed.moodColor} + '.png'" th:alt="${feed.moodColor}"></div>
-                            <h2 class="fs-4 fw-bold" th:text="${feed.title}"></h2>
-                            <p class="mb-0" th:text="${#strings.abbreviate(feed.content, 30)}"></p>
+                    <a class="modify-a" th:href="@{/feed/{feedId}/modify (feedId=${feed.feedId})}" th:title="${#strings.abbreviate(feed.title, 15)}">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <div class="feature bg-gradient text-white rounded-3 mb-4 mt-n4">
+                                    <img class="img-fluid" th:src="@{/images/} + ${feed.moodColor} + '.png'" th:alt="${feed.moodColor}">
+                                </div>
+                                <h2 class="fs-4 fw-bold" th:text="${#strings.abbreviate(feed.title, 50)}"></h2>
+                                <p class="mb-0" th:text="${#strings.abbreviate(feed.content, 30)}"></p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>

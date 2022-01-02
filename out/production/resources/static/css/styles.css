@@ -174,15 +174,6 @@ address {
   line-height: inherit;
 }
 
-.list-style-none{
-  list-style:none;
-
-}
-.list-style-none > li{
-  float: left;
-}
-
-
 ol,
 ul {
   padding-left: 2rem;
