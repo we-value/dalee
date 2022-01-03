@@ -32,9 +32,6 @@ public class FeedService {
     @Transactional
     public void editFeed(Long feedId, String title, String content, LocalDateTime reservationDate, MoodColor moodColor){
         Feed findByIdFeed = feedRepository.findByIdFeed(feedId);
-        findByIdFeed.setTitle(title);
-        findByIdFeed.setContent(content);
-        findByIdFeed.setReservationDate(reservationDate);
-        findByIdFeed.setMoodColor(moodColor);
+        findByIdFeed.editFeed(title, content, reservationDate, moodColor);
     }
 }
