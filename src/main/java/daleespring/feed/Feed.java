@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 @Getter @Setter
 public class Feed {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Comment("키값")
@@ -53,4 +52,27 @@ public class Feed {
     @UpdateTimestamp
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-ddTHH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime eDate;
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setReservationDate(LocalDateTime reservationDate) {
+        this.reservationDate = reservationDate;
+    }
+
+    public void setMoodColor(MoodColor moodColor) {
+        this.moodColor = moodColor;
+    }
+
+    public void editFeed(String title, String content, LocalDateTime reservationDate, MoodColor moodColor){
+        this.title = title;
+        this.content = content;
+        this.reservationDate = reservationDate;
+        this.moodColor = moodColor;
+    }
 }
