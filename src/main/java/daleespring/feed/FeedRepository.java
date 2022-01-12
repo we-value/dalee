@@ -23,4 +23,10 @@ public class FeedRepository {
     public List<Feed> findByAllFeed() {
         return entityManager.createQuery("select f from Feed f", Feed.class).getResultList();
     }
+
+    public List<Feed> findByMemberAllFeed(Long memberId){
+        return entityManager.createQuery("select f from Feed f where f.memberId = :memberId", Feed.class)
+                .setParameter("memberId", memberId)
+                .getResultList();
+    }
 }

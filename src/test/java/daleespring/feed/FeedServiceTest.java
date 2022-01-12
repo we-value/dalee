@@ -24,7 +24,7 @@ class FeedServiceTest {
     FeedRepository feedRepository;
 
     @Test
-    public void 피드_저장(){
+    public void saveFeed(){
         //given
         Feed feed = new Feed();
         feed.setTitle("테스트 제목");
