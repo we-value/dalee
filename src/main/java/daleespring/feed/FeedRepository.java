@@ -28,5 +28,6 @@ public class FeedRepository {
         return entityManager.createQuery("select f from Feed f where f.memberId = :memberId", Feed.class)
                 .setParameter("memberId", memberId)
                 .getResultList();
+
     }
 }

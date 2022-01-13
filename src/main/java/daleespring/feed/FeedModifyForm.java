@@ -12,14 +12,14 @@ import java.time.LocalDateTime;
 @Getter @Setter
 public class FeedModifyForm {
 
-    @NotEmpty(message = "제목을 입력해주세요")
+    @NotEmpty(message = "제목을 입력해주세요!")
     private String title;
 
     @Lob
-    @NotEmpty(message = "내용을 입력해주세요")
+    @NotEmpty(message = "내용을 입력해주세요!")
     private String content;
 
-    @NotNull(message = "상태를 선택해주세요")
+    @NotNull(message = "상태를 선택해주세요!")
     private MoodColor moodColor;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
