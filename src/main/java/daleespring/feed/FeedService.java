@@ -18,7 +18,7 @@ public class FeedService {
     @Transactional
     public Long saveFeed(Feed feed){
         feedRepository.saveFeed(feed);
-        return feed.getFeedId();
+        return feed.getId();
     }
 
     public Feed findByIdFeed(Long feedId){

@@ -18,9 +18,12 @@ public class Feed {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Comment("키값")
-    @Column(name = "feed_id")
-    
-    private Long feedId;
+    @Column(name = "id")
+    private Long id;
+
+    @Comment("회원키값")
+    @Column(name = "member_id")
+    private Long memberId;
 
     @Comment("제목")
     @Column(name = "title")
