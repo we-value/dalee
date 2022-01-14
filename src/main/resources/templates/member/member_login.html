@@ -1,10 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/layout">
 
-</body>
+<!-- 해당 html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+    <style>
+        .field-error {
+            border: 2px solid #4AC6C6;
+        }
+    </style>
+</th:block>
+
+<!-- 해당 html 고유 스크립트 추가 -->
+<th:block layout:fragment="script"></th:block>
+
+<div layout:fragment="content">
+    <div class="container px-lg-5">
+        <div class="py-4 text-center">
+            <img class="d-block mx-auto mb-4" th:src="@{/images/useravatar.svg}" alt="" width="100" height="100">
+            <h2>로그인</h2>
+        </div>
+
+        <div class="row gx-lg-5">
+            <div class="col-md-12 order-md-1">
+                <h4 class="mb-3">로그인 정보 입력</h4>
+                <form class="needs-validation" th:object="${memberLoginForm}" method="post">
+                    <div class="mb-4-1">
+                        <label th:for="*{email}">이메일</label>
+                        <input type="text" class="form-control" th:field="*{email}"
+                               th:classappend="${#fields.hasErrors('email')}? 'field-error' : ''" placeholder="이메일을 입력해주세요">
+                        <p class="fs-6 fw-bold text-start" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Incorrect date</p>
+                    </div>
+                    <div class="mb-4-1">
+                        <label th:for="*{password}">비밀번호</label>
+                        <input type="password" class="form-control" th:field="*{password}"
+                               th:classappend="${#fields.hasErrors('password')}? 'field-error' : ''" placeholder="비밀번호를 입력해주세요">
+                        <p class="fs-6 fw-bold text-start" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Incorrect date</p>
+                    </div>
+                    <hr class="mb-4-1">
+                    <button class="btn btn-primary btn-lg btn-block mb-5" type="submit">로그인</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </html>
