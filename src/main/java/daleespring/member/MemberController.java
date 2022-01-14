@@ -30,6 +30,7 @@ public class MemberController {
     public String MemberJoin(@Valid MemberJoinForm memberJoinForm, BindingResult memberFormBindingResult){
 
         memberPwdAndEmailValidate(memberJoinForm, memberFormBindingResult);
+
         if (memberFormBindingResult.hasErrors()) {
             return "member/member_join";
         }
@@ -41,8 +42,21 @@ public class MemberController {
 
         memberService.memberJoin(member);
 
-        return "feed/feed_list";
+        return "redirect:/member/login";
     }
+
+    @GetMapping("login")
+    public String MemberLogin(Model model){
+
+        model.addAttribute("memberLoginForm", new MemberLoginForm());
+        return "/member/member_login";
+    }
+
+    /*@PostMapping("login")
+    public String MemberLogin(Model model){
+
+        return "redirect:/feed/list";
+    }*/
 
     private void memberPwdAndEmailValidate(MemberJoinForm memberJoinForm, BindingResult memberFormBindingResult) {
         if(!memberRepository.findByEmailMember(memberJoinForm.getEmail()).isEmpty()){
@@ -56,5 +70,4 @@ public class MemberController {
             memberFormBindingResult.rejectValue("passwordCheck", "code","비밀번호가 일치하지 않습니다!");
         }
     }
-
 }
